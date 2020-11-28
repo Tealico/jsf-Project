@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="content">
+		<p:growl id="growl"></p:growl>
+			<h:form id="form">
+				<p:dataTable id="table" value="#{filmManagedBean.films}"
+						var="film">
+	
+						<p:column headerText="Title">
+							<h:link value="#{film.title}" onclick="PF('description').show();"/>						
+						</p:column>
+						
+						<p:dialog header="Description" widgetVar="description" modal="true"  showEffect="explode" hideEffect="explode" height="100">
+						    <h:outputText value="#{film.description}"/>
+						</p:dialog> 
+						
+						<p:column headerText="Actor First Name">
+							<p:outputLabel value="#{film.firstName}"></p:outputLabel>
+						</p:column>
+						<p:column headerText="Actor Last Name">
+							<p:outputLabel value="#{film.lastName}"></p:outputLabel>
+						</p:column>
+						<p:column headerText="Release Year">
+							<p:outputLabel value="#{film.releaseYear}"></p:outputLabel>
+						</p:column>
+						
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
